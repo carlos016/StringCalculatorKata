@@ -1,0 +1,69 @@
+[project]
+name = "string_calculator_kata"
+version = "0.1.0"
+description = "The following is a TDD Kata- an exercise in coding, refactoring and test-first, that you should apply daily for at least 15 minutes."
+readme = "README.md"
+authors = [
+  {name = "Carlos García González", email = "alu0100898026@ull.edu.es"}
+]
+maintainers = [
+  {name = "Carlos García González", email = "alu0100898026@ull.edu.es"}
+]
+classifiers = [
+    # TODO
+]
+license = {text = "MIT"}
+dependencies = [
+  "typer",
+  "pytest (>=8.4.2,<9.0.0)"
+]
+requires-python = ">= 3.10"
+
+[project.optional-dependencies]
+test = [
+    "coverage",  # testing
+    "pytest",  # testing
+    "ruff",  # linting
+    "ty", # checking types
+    "ipdb", # debugging
+]
+
+[project.urls]
+bugs = "https://github.com/carlos016/string_calculator_kata/issues"
+changelog = "https://github.com/carlos016/string_calculator_kata/blob/master/changelog.md"
+homepage = "https://github.com/carlos016/string_calculator_kata"
+
+[project.scripts]
+string_calculator_kata = "string_calculator_kata.cli:app"
+
+[tool.ty]
+# All rules are enabled as "error" by default; no need to specify unless overriding.
+# Example override: relax a rule for the entire project (uncomment if needed).
+# rules.TY015 = "warn"  # For invalid-argument-type, warn instead of error.
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+]
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "pytest (>=8.4.2,<9.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)",
+    "black (>=25.9.0,<26.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "isort (>=7.0.0,<8.0.0)",
+    "mypy (>=1.18.2,<2.0.0)",
+    "pre-commit (>=4.3.0,<5.0.0)"
+]
