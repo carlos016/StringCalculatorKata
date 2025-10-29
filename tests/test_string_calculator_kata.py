@@ -17,5 +17,14 @@ def before_each() -> StringCalculator:
 # Test adding an empty string
 def test_add_empty_string(before_each: StringCalculator) -> None:
     calculator = before_each
+    assert calculator.add("0") == 0
     assert calculator.add("") == 0
     assert calculator.add() == 0
+
+
+# Test adding a non-empty string
+def test_add_non_empty_string(before_each: StringCalculator) -> None:
+    calculator = before_each
+    assert calculator.add("5") == 5
+    assert calculator.add("10") == 10
+    assert calculator.add("1,2") == 3
