@@ -18,3 +18,4 @@ def before_each() -> StringCalculator:
 def test_add_empty_string(before_each: StringCalculator) -> None:
     calculator = before_each
     assert calculator.add("") == 0
+    assert calculator.add() == 0
