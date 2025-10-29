@@ -60,8 +60,7 @@ repos:
     hooks:
       - id: pytest
         name: Run tests (pytest via Poetry)
-        entry: cmd /c "poetry run poe test 1>&2"
-        #entry: poetry run poe test
+        entry: poetry run poe test
         language: system
         pass_filenames: false
         stages: [pre-push]
