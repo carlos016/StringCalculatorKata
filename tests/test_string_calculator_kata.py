@@ -27,6 +27,8 @@ def test_add_non_empty_string(before_each: StringCalculator) -> None:
     assert calculator.add("0") == 0
     assert calculator.add("10") == 10
     assert calculator.add("1,2") == 3
+    assert calculator.add("5,7,2") == 14
+    assert calculator.add("10,20,30,40") == 100
 
 
 # Test adding with invalid input that should raise an exception
@@ -38,5 +40,3 @@ def test_add_invalid_input(before_each: StringCalculator) -> None:
         calculator.add("1,b")
     with pytest.raises(ValueError):
         calculator.add("c,d")
-    with pytest.raises(ValueError):
-        calculator.add("1,2,3")
