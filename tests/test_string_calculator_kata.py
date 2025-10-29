@@ -40,3 +40,14 @@ def test_add_invalid_input(before_each: StringCalculator) -> None:
         calculator.add("1,b")
     with pytest.raises(ValueError):
         calculator.add("c,d")
+
+
+# Test adding with separators other than commas
+def test_add_invalid_separators(before_each: StringCalculator) -> None:
+    calculator = before_each
+    with pytest.raises(ValueError):
+        calculator.add("1|2|3")
+    with pytest.raises(ValueError):
+        calculator.add("1;2;3")
+    with pytest.raises(ValueError):
+        calculator.add("1.2.3")
