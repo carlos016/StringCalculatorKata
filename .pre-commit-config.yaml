@@ -64,3 +64,5 @@ repos:
         language: system
         pass_filenames: false
         stages: [pre-push]
+        verbose: true
+        always_run: true
