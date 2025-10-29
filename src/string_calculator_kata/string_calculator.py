@@ -1,6 +1,8 @@
 class StringCalculator:
     def add(self, numbers: str = "") -> int:
-        if numbers != "" and numbers != "0":
-            return sum(int(num) for num in numbers.split(","))
+        total = 0
+        if numbers:
+            for number in numbers.split(","):
+                total += int(number)
 
-        return 0
+        return total
