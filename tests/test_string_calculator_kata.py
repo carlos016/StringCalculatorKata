@@ -38,3 +38,5 @@ def test_add_invalid_input(before_each: StringCalculator) -> None:
         calculator.add("1,b")
     with pytest.raises(ValueError):
         calculator.add("c,d")
+    with pytest.raises(ValueError):
+        calculator.add("1,2,3")
