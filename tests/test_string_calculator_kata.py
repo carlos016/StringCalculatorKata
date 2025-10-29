@@ -3,7 +3,7 @@ import pytest
 
 """Tests for `string_calculator_kata` package."""
 
-from string_calculator_kata import StringCalculator
+from string_calculator_kata.string_calculator import StringCalculator
 
 
 # Before each test, we create a new instance of StringCalculator
