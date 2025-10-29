@@ -1,0 +1,66 @@
+fail_fast: true
+
+default_language_version:
+  python: python3.11
+default_stages: [pre-commit, pre-push]
+
+repos:
+  # 🧹 Formateo de código con Black
+  - repo: https://github.com/psf/black
+    rev: 24.3.0
+    hooks:
+      - id: black
+        name: Black formatter
+        language: system
+        entry: poetry run black
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+
+  # 🔄 Orden de imports con isort
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort import sorter
+        language: system
+        entry: poetry run isort
+        args: ["--profile", "black"]
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+
+  # 🔍 Linter de estilo con Flake8
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        name: Flake8 linter
+        language: system
+        entry: poetry run flake8
+        args: ["--exclude", ".venv"]
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+
+  # 🧠 Comprobación de tipos con MyPy
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.0
+    hooks:
+      - id: mypy
+        name: MyPy type checker
+        language: system
+        entry: poetry run mypy
+        pass_filenames: true
+        types: [python]
+        stages: [pre-commit]
+
+  # 🧪 Tests (solo antes de hacer push)
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run tests (pytest via Poetry)
+        entry: poetry run poe test
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

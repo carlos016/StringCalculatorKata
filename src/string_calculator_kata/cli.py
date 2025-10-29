@@ -10,7 +10,7 @@ console = Console()
 
 
 @app.command()
-def main():
+def main() -> None:
     """Console script for string_calculator_kata."""
     console.print(
         "Replace this message by putting your code into "

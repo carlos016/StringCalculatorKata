@@ -3,30 +3,15 @@ name = "string_calculator_kata"
 version = "0.1.0"
 description = "The following is a TDD Kata- an exercise in coding, refactoring and test-first, that you should apply daily for at least 15 minutes."
 readme = "README.md"
-authors = [
-  {name = "Carlos García González", email = "alu0100898026@ull.edu.es"}
-]
-maintainers = [
-  {name = "Carlos García González", email = "alu0100898026@ull.edu.es"}
-]
-classifiers = [
-    # TODO
-]
+authors = [{name = "Carlos García González", email = "alu0100898026@ull.edu.es"}]
+maintainers = [{name = "Carlos García González", email = "alu0100898026@ull.edu.es"}]
+classifiers = []
 license = {text = "MIT"}
-dependencies = [
-  "typer",
-  "pytest (>=8.4.2,<9.0.0)"
-]
+dependencies = ["typer", "pytest (>=8.4.2,<9.0.0)"]
 requires-python = ">= 3.10"
 
 [project.optional-dependencies]
-test = [
-    "coverage",  # testing
-    "pytest",  # testing
-    "ruff",  # linting
-    "ty", # checking types
-    "ipdb", # debugging
-]
+test = ["coverage", "pytest", "ruff", "ty", "ipdb"]
 
 [project.urls]
 bugs = "https://github.com/carlos016/string_calculator_kata/issues"
@@ -45,25 +30,40 @@ string_calculator_kata = "string_calculator_kata.cli:app"
 line-length = 120
 
 [tool.ruff.lint]
-select = [
-    "E",   # pycodestyle errors
-    "W",   # pycodestyle warnings
-    "F",   # Pyflakes
-    "I",   # isort
-    "B",   # flake8-bugbear
-    "UP",  # pyupgrade
-]
+select = ["E", "W", "F", "I", "B", "UP"]
 
 [tool.uv]
 package = true
 
 [dependency-groups]
-dev = [
-    "pytest (>=8.4.2,<9.0.0)",
-    "pytest-cov (>=7.0.0,<8.0.0)",
-    "black (>=25.9.0,<26.0.0)",
-    "flake8 (>=7.3.0,<8.0.0)",
-    "isort (>=7.0.0,<8.0.0)",
-    "mypy (>=1.18.2,<2.0.0)",
-    "pre-commit (>=4.3.0,<5.0.0)"
-]
+dev = ["pytest (>=8.4.2,<9.0.0)", "pytest-cov (>=7.0.0,<8.0.0)", "black (>=25.9.0,<26.0.0)", "flake8 (>=7.3.0,<8.0.0)", "isort (>=7.0.0,<8.0.0)", "mypy (>=1.18.2,<2.0.0)", "pre-commit (>=4.3.0,<5.0.0)", "poethepoet (>=0.37.0,<0.38.0)"]
+
+# --- Configuración de herramientas de desarrollo ---
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_first_party = ["string_calculator_kata"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [".venv", ".venv/", "*/.venv/*", "__pycache__", "build", "dist", ".git", ".mypy_cache"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+disallow_untyped_defs = true
+strict_optional = true
+
+# --- Comandos de desarrollo personalizados ---
+
+[tool.poe.tasks]
+lint = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "flake8 . --exclude .venv" }, { cmd = "mypy ."}]
+format = [{ cmd = "isort ." }, { cmd = "black ." }]
+test = "pytest"
+check = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "flake8 . --exclude .venv" }, { cmd = "mypy ."}, { cmd = "pytest" }]
