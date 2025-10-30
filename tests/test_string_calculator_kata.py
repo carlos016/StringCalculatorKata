@@ -70,3 +70,13 @@ def test_add_different_separators(before_each: StringCalculator) -> None:
     assert calculator.add("//;\n1;2") == 3
     assert calculator.add("//|\n3|4|5") == 12
     assert calculator.add("//sep\n6sep7sep8") == 21
+
+
+# Test method that counts how many times add has been called
+def test_get_call_count(before_each: StringCalculator) -> None:
+    calculator = before_each
+    assert calculator.get_call_count() == 0
+    calculator.add("1,2")
+    assert calculator.get_call_count() == 1
+    calculator.add("4,5,6")
+    assert calculator.get_call_count() == 2
