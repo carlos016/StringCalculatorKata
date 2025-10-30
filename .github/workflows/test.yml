@@ -28,7 +28,9 @@ jobs:
 
       # 4️⃣ Instalar dependencias (producción + desarrollo)
       - name: Install dependencies
-        run: poetry install
+        run: |
+          poetry lock --no-update
+          poetry install
 
       # 5️⃣ Ejecutar pre-commit hooks (Black, isort, Flake8, MyPy)
       - name: Run pre-commit hooks
