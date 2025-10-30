@@ -1,4 +1,8 @@
 class StringCalculator:
+    def __init__(self) -> None:
+        self.call_count = 0
+
+    # Method to add numbers in a string
     def add(self, numbers: str = "") -> int:
         total = 0
         if numbers:
@@ -25,5 +29,9 @@ class StringCalculator:
                 raise ValueError(
                     f"Invalid input: {number}, only positive numbers are allowed."
                 )
-
+        self.call_count += 1
         return total
+
+    # Method to get the number of times 'add' has been called
+    def get_call_count(self) -> int:
+        return self.call_count
