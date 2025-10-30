@@ -63,7 +63,7 @@ strict_optional = true
 # --- Comandos de desarrollo personalizados ---
 
 [tool.poe.tasks]
-lint = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "flake8 . --exclude .venv --extend-ignore=E203,W503" }, { cmd = "mypy ."}]
+lint = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "flake8 . --exclude .venv --max-line-length=88 --extend-ignore=E203,W503" }, { cmd = "mypy ."}]
 format = [{ cmd = "isort ." }, { cmd = "black ." }]
 test = "pytest"
-check = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "flake8 . --exclude .venv --extend-ignore=E203,W503" }, { cmd = "mypy ."}, { cmd = "pytest" }]
+check = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "flake8 . --exclude .venv --max-line-length=88 --extend-ignore=E203,W503" }, { cmd = "mypy ."}, { cmd = "pytest" }]

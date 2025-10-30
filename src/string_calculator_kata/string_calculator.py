@@ -11,11 +11,13 @@ class StringCalculator:
             numbers = numbers.replace("\n", separatorDefault)
             try:
                 for number in numbers.split(separatorDefault):
+                    if int(number) < 0:
+                        raise ValueError("Negative numbers are not allowed. ")
                     total += int(number)
 
             except ValueError:
                 raise ValueError(
-                    f"Invalid input: {number}," f" only numbers are allowed."
+                    f"Invalid input: {number}, only positive numbers are allowed."
                 )
 
         return total
