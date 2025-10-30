@@ -67,3 +67,36 @@ lint = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "f
 format = [{ cmd = "isort ." }, { cmd = "black ." }]
 test = "pytest"
 check = [{ cmd = "black --check ." }, { cmd = "isort --check-only ."}, { cmd = "flake8 . --exclude .venv --max-line-length=88 --extend-ignore=E203,W503" }, { cmd = "mypy ."}, { cmd = "pytest" }]
+
+
+# --- Compatibilidad con Poetry ---
+[tool.poetry]
+name = "string_calculator_kata"
+version = "0.1.0"
+description = "The following is a TDD Kata- an exercise in coding, refactoring and test-first, that you should apply daily for at least 15 minutes."
+authors = ["Carlos García González <alu0100898026@ull.edu.es>"]
+readme = "README.md"
+license = "MIT"
+packages = [{ include = "string_calculator_kata", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+typer = "*"
+pytest = ">=8.4.2,<9.0.0"
+
+[tool.poetry.group.dev.dependencies]
+coverage = "*"
+ruff = "*"
+ty = "*"
+ipdb = "*"
+pytest-cov = ">=7.0.0,<8.0.0"
+black = ">=25.9.0,<26.0.0"
+flake8 = ">=7.3.0,<8.0.0"
+isort = ">=7.0.0,<8.0.0"
+mypy = ">=1.18.2,<2.0.0"
+pre-commit = ">=4.3.0,<5.0.0"
+poethepoet = ">=0.37.0,<0.38.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
