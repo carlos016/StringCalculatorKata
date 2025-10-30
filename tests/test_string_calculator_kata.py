@@ -59,3 +59,6 @@ def test_add_different_separators(before_each: StringCalculator) -> None:
     assert calculator.add("1,2\n3") == 6
     assert calculator.add("4\n5,6") == 15
     assert calculator.add("7,8\n9,10") == 34
+    assert calculator.add("//;\n1;2") == 3
+    assert calculator.add("//|\n3|4|5") == 12
+    assert calculator.add("//sep\n6sep7sep8") == 21
