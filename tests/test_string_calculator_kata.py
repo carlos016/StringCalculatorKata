@@ -80,3 +80,12 @@ def test_get_call_count(before_each: StringCalculator) -> None:
     assert calculator.get_call_count() == 1
     calculator.add("4,5,6")
     assert calculator.get_call_count() == 2
+
+
+# Test adding numbers greater than 1000 should be ignored
+def test_add_ignores_numbers_greater_than_1000(before_each: StringCalculator) -> None:
+    calculator = before_each
+    assert calculator.add("2,1001") == 2
+    assert calculator.add("1000,1001,1002") == 1000
+    assert calculator.add("500,600,700") == 1800
+    assert calculator.add("1500,2500,3500") == 0
