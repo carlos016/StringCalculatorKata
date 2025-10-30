@@ -51,3 +51,11 @@ def test_add_invalid_separators(before_each: StringCalculator) -> None:
         calculator.add("1;2;3")
     with pytest.raises(ValueError):
         calculator.add("1.2.3")
+
+
+# Test adding with commas and/or new lines as separators
+def test_add_different_separators(before_each: StringCalculator) -> None:
+    calculator = before_each
+    assert calculator.add("1,2\n3") == 6
+    assert calculator.add("4\n5,6") == 15
+    assert calculator.add("7,8\n9,10") == 34
