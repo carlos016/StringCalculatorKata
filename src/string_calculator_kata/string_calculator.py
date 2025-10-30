@@ -12,9 +12,8 @@ class StringCalculator:
             mainSeparator = numbers[2 : numbers.index("\n")]
             if numbers.startswith("//["):
                 # Custom separator specified. Example:("//[;]\n1;2")
-                mainSeparator = numbers[3 : numbers.index("]\n")]
+                mainSeparator = numbers[3 : numbers.index("]")]
                 if "][" in numbers:
-                    mainSeparator = numbers[3 : numbers.index("][")]
                     secondarySeparator = numbers[
                         numbers.index("][") + 2 : numbers.index("]\n")
                     ]
