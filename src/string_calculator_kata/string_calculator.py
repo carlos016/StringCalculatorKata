@@ -18,7 +18,8 @@ class StringCalculator:
                 for number in numbers.split(separatorDefault):
                     if int(number) < 0:
                         negative_numbers.append(number)
-                    total += int(number)
+                    if int(number) <= 1000:
+                        total += int(number)
 
                 if negative_numbers:
                     raise ValueError(
