@@ -1195,5 +1195,5 @@ test = ["coverage", "ipdb", "pytest", "ruff", "ty"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">= 3.10"
-content-hash = "54f650c767ee18c0ece1131c8e6152cf5102810094fe68007a55c8766ab78595"
+python-versions = ">=3.10"
+content-hash = "7ba18b0eee1b4020efdd2a729819735eed58bbe9d3c8f41d9c2270736262a99c"
