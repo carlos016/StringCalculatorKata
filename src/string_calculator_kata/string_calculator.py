@@ -6,16 +6,18 @@ class StringCalculator:
     def add(self, numbers: str = "") -> int:
         total = 0
         if numbers:
-            separatorDefault = ","
-            if numbers.startswith("//"):
-                # Custom separator specified. Example:("//;\n1;2")
-                separatorDefault = numbers[2 : numbers.index("\n")]
-                numbers = numbers[numbers.index("\n") + 1 :]
+            mainSeparator = ","
+            secondarySeparator = "\n"
 
-            numbers = numbers.replace("\n", separatorDefault)
+            if numbers.startswith("//["):
+                # Custom separator specified. Example:("//;\n1;2")
+                mainSeparator = numbers[3 : numbers.index("]\n")]
+                numbers = numbers[numbers.index("]\n") + 2 :]
+
+            numbers = numbers.replace(secondarySeparator, mainSeparator)
             try:
                 negative_numbers = []
-                for number in numbers.split(separatorDefault):
+                for number in numbers.split(mainSeparator):
                     if int(number) < 0:
                         negative_numbers.append(number)
                     if int(number) <= 1000:
