@@ -10,10 +10,16 @@ class StringCalculator:
 
             numbers = numbers.replace("\n", separatorDefault)
             try:
+                negative_numbers = []
                 for number in numbers.split(separatorDefault):
                     if int(number) < 0:
-                        raise ValueError("Negative numbers are not allowed. ")
+                        negative_numbers.append(number)
                     total += int(number)
+
+                if negative_numbers:
+                    raise ValueError(
+                        f"Negatives not allowed: {', '.join(negative_numbers)}. "
+                    )
 
             except ValueError:
                 raise ValueError(
