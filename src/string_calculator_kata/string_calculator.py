@@ -10,8 +10,14 @@ class StringCalculator:
             secondarySeparator = "\n"
 
             if numbers.startswith("//["):
-                # Custom separator specified. Example:("//;\n1;2")
+                # Custom separator specified. Example:("//[;]\n1;2")
                 mainSeparator = numbers[3 : numbers.index("]\n")]
+                if "][" in numbers:
+                    mainSeparator = numbers[3 : numbers.index("][")]
+                    secondarySeparator = numbers[
+                        numbers.index("][") + 2 : numbers.index("]\n")
+                    ]
+
                 numbers = numbers[numbers.index("]\n") + 2 :]
 
             numbers = numbers.replace(secondarySeparator, mainSeparator)
