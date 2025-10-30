@@ -2,13 +2,14 @@ class StringCalculator:
     def __init__(self) -> None:
         self.call_count = 0
 
-    # Method to add numbers in a string
-    def add(self, numbers: str = "") -> int:
-        total = 0
-        if numbers:
-            mainSeparator = ","
-            secondarySeparator = "\n"
+    # Method to extract separators and numbers from the input string
+    def extract_separators_and_numbers(self, numbers: str) -> tuple:
+        mainSeparator = ","
+        secondarySeparator = "\n"
 
+        if numbers.startswith("//"):
+            # Custom separator specified. Example:("//;\n1;2")
+            mainSeparator = numbers[2 : numbers.index("\n")]
             if numbers.startswith("//["):
                 # Custom separator specified. Example:("//[;]\n1;2")
                 mainSeparator = numbers[3 : numbers.index("]\n")]
@@ -18,8 +19,17 @@ class StringCalculator:
                         numbers.index("][") + 2 : numbers.index("]\n")
                     ]
 
-                numbers = numbers[numbers.index("]\n") + 2 :]
+            numbers = numbers[numbers.index("\n") + 1 :]
 
+        return mainSeparator, secondarySeparator, numbers
+
+    # Method to add numbers in a string
+    def add(self, numbers: str = "") -> int:
+        total = 0
+        if numbers:
+            mainSeparator, secondarySeparator, numbers = (
+                self.extract_separators_and_numbers(numbers)
+            )
             numbers = numbers.replace(secondarySeparator, mainSeparator)
             try:
                 negative_numbers = []
