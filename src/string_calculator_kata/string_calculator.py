@@ -4,35 +4,35 @@ class StringCalculator:
 
     # Method to extract separators and numbers from the input string
     def extract_separators_and_numbers(self, numbers: str) -> tuple:
-        mainSeparator = ","
-        secondarySeparator = "\n"
+        main_separator = ","
+        secondary_separator = "\n"
 
         if numbers.startswith("//"):
             # Custom separator specified. Example:("//;\n1;2")
-            mainSeparator = numbers[2 : numbers.index("\n")]
+            main_separator = numbers[2 : numbers.index("\n")]
             if numbers.startswith("//["):
                 # Custom separator specified. Example:("//[;]\n1;2")
-                mainSeparator = numbers[3 : numbers.index("]")]
+                main_separator = numbers[3 : numbers.index("]")]
                 if "][" in numbers:
-                    secondarySeparator = numbers[
+                    secondary_separator = numbers[
                         numbers.index("][") + 2 : numbers.index("]\n")
                     ]
 
             numbers = numbers[numbers.index("\n") + 1 :]
 
-        return mainSeparator, secondarySeparator, numbers
+        return main_separator, secondary_separator, numbers
 
     # Method to add numbers in a string
     def add(self, numbers: str = "") -> int:
         total = 0
         if numbers:
-            mainSeparator, secondarySeparator, numbers = (
+            main_separator, secondary_separator, numbers = (
                 self.extract_separators_and_numbers(numbers)
             )
-            numbers = numbers.replace(secondarySeparator, mainSeparator)
+            numbers = numbers.replace(secondary_separator, main_separator)
             try:
                 negative_numbers = []
-                for number in numbers.split(mainSeparator):
+                for number in numbers.split(main_separator):
                     if int(number) < 0:
                         negative_numbers.append(number)
                     if int(number) <= 1000:
