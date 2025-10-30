@@ -61,7 +61,7 @@ def test_add_invalid_separators(before_each: StringCalculator) -> None:
         calculator.add("1.2.3")
 
 
-# Test adding with commas and/or new lines as separators
+# Test adding with different valid separators
 def test_add_different_separators(before_each: StringCalculator) -> None:
     calculator = before_each
     assert calculator.add("1,2\n3") == 6
@@ -70,6 +70,14 @@ def test_add_different_separators(before_each: StringCalculator) -> None:
     assert calculator.add("//[;]\n1;2") == 3
     assert calculator.add("//[|]\n3|4|5") == 12
     assert calculator.add("//[sep]\n6sep7sep8") == 21
+
+
+# Test adding with multiple custom separators
+def test_add_multiple_custom_separators(before_each: StringCalculator) -> None:
+    calculator = before_each
+    assert calculator.add("//[*][%]\n1*2%3") == 6
+    assert calculator.add("//[;][|]\n4;5|6") == 15
+    assert calculator.add("//[sep][#]\n7sep8#9") == 24
 
 
 # Test method that counts how many times add has been called
