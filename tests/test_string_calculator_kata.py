@@ -46,6 +46,8 @@ def test_add_invalid_input(before_each: StringCalculator) -> None:
         calculator.add("1,-2")
     with pytest.raises(ValueError):
         calculator.add("1,2,-3")
+    with pytest.raises(ValueError):
+        calculator.add("-1,2,-3")
 
 
 # Test adding with separators other than commas
