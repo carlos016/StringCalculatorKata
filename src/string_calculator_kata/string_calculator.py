@@ -2,6 +2,7 @@ class StringCalculator:
     def add(self, numbers: str = "") -> int:
         total = 0
         if numbers:
+            numbers = numbers.replace("\n", ",")
             try:
                 for number in numbers.split(","):
                     total += int(number)
